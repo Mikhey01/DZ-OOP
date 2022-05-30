@@ -1,4 +1,4 @@
-object WallService {
+class WallService {
 
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comment>()
@@ -19,9 +19,10 @@ object WallService {
                 posts[index] = post.copy(
                     ownerId = post.ownerId,
                     date = post.date)
+                return true
             }
         }
-        return true
+        return false
     }
 
 
@@ -33,11 +34,11 @@ object WallService {
         }
     }
 
-    fun createComment(comment: Comment): Boolean {
+    fun createComment(postId: Long, comment: Comment): Comment {
         for (post in posts) {
-            if (comment.postId == post.id) {
+            if (postId == post.id) {
                 comments += comment
-                return true
+                return comments.last()
             }
         }
         throw PostNotFoundException("Пост для комментария не найден")
