@@ -1,5 +1,5 @@
 data class Comment(
-    val id: Long, // Идентификатор комментария
+    var id: Long, // Идентификатор комментария
     //val postId: Long, // идентификатор поста
     val fromId: Int, // Идентификатор автора комментария
     val date: Int, // Дата создания комментария в формате Unixtime

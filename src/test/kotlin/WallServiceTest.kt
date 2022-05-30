@@ -56,24 +56,25 @@ class WallServiceTest {
 //        assertTrue(result)
 //    }
 
-//    @Test
-//    fun createCommentTest() {
-//        val service = WallService()
-//        val photoAttachment = 0
-//        // заполняем несколькими постами
-//        service.add(Post(0, 321654, 12112022, "Добрый день"))
-//        service.add(Post(0, 654987, 12112022, "Добрый вечер"))
-//        service.add(Post(0, 123698, 12112022, "Доброй ночи"))
-//        // создаём информацию об обновлении
-//        val createCommentPost = Comment(1,3,2223434,324234234,"text comment one",null,
-//            arrayOf(photoAttachment),null)
-//
-//        // выполняем целевое действие
-//        val result = service.createComment(createCommentPost)
-//
-//        assertTrue(result)
-//
-//    }
+    @Test
+    fun createCommentTest() {
+        val service = WallService()
+        val photoAttachment = 0
+        // заполняем несколькими постами
+        service.add(Post(0, 321654, 12112022, "Добрый день"))
+        service.add(Post(0, 654987, 12112022, "Добрый вечер"))
+        service.add(Post(0, 123698, 12112022, "Доброй ночи"))
+        // создаём комментарий
+        val comment = service.createComment(postId = 2, Comment(0,3,2223434,"text comment one",null,
+            arrayOf(photoAttachment),null))
+        var result = false
+        if (comment.id > 0 ) {
+            result = true
+        }
+
+            assertEquals(true, result)
+
+    }
 
     @Test(expected = PostNotFoundException::class)
 

@@ -37,6 +37,11 @@ class WallService {
     fun createComment(postId: Long, comment: Comment): Comment {
         for (post in posts) {
             if (postId == post.id) {
+                if (comments.isEmpty()) {
+                    comment.id = 1
+                } else {
+                    comment.id = comments.last().id+1
+                }
                 comments += comment
                 return comments.last()
             }
